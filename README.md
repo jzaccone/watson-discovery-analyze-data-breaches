@@ -1,14 +1,93 @@
 [![Build Status](https://travis-ci.org/IBM/watson-discovery-analyze-data-breaches.svg?branch=master)](https://travis-ci.org/IBM/watson-discovery-analyze-data-breaches)
 
-# Use the Watson Discovery Service to analyze cyber security breaches - modified
+# Use the Watson Discovery Service Walkthough - Analyzing Cyber security breaches
 
-In this Code Pattern you will upload your own data into the Watson Discovery Service. Then you'll configure a web application so that it can query the data collection you created. The web app allows you to explore that data.
+In this walkthrough you will upload your own data into the Watson Discovery Service. To do this you will provision the Discovery service, load the data and query the data.
 
-Once you have completed this Code Pattern, you will know how to:
+## During the walkthough you will explore:
+1. Provision the Discovery service with storage for your data
+2. Explore the data the spreadsheet - convert to JSON (PDF, Word, HTML)
+3. Import the documents - Discovery only supports JSON, PDF, Word and HTML so a applet was built to convert the CSV to a set of JSON Documents
+4. Note the languate options - language options [English, German, Spanish, Arabic, French, Italian, Korean, or Brazilian Portuguese.]
+5. Walk through the enrichments introduced by Discovery by comparing the CSV to the enriched JSON documents. Discovery will enrich (add cognitive metadata to) the text field of your documents with semantic information collected by four Watson Enrichments — Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging (learn more about them here).
+6. Note the configuration options - understand the default configuration, the Discovery default configuration will enrich (add cognitive metadata to) the text field of your ingested documents with semantic information collected by these four Watson functions - Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging. (There are a total of nine Watson enrichments available; the others are Keyword Extraction, Relation Extraction, Emotion Analysis, Element Classification, and Semantic Role Extraction.)
+7. Querying the data set
+8. Filtering by original fields
+9. Filtering by enriched fields
+10. Show custom configuration setup - add a new enrichment to the title field
+11. Use Watson Exploreer to call the service from out side of the tooling using the supplied credentials
 
-* Build and run a Node.js API server with a HTML frontend written in React
-* Configure Watson Discovery to build and enrich private data collections
-* Use Watson Discovery to query and analyze data
+Once you've completed the walkthrough you will know how to :
+
+* Provision the Discovery service
+* Import data into the service
+* Run simple and advanced queries
+* Add enrichments
+
+If you like you can configure a web application so that it can query the data collection you created. The web app allows you to explore that data. 
+
+### Walkthrough Steps
+
+### 2. Create IBM Cloud services
+
+Create the following services:
+
+* [**Watson Discovery**](https://console.ng.bluemix.net/catalog/services/discovery)
+
+### 3. Load the Discovery files
+
+Launch the **Watson Discovery** tool. Create a **new data collection**
+and give the data collection a unique name.
+
+<p align="center">
+  <img width="600" src="doc/source/images/create-collection.png">
+</p>
+
+> Save the **environment_id** and **collection_id** for your `.env` file in the next step.
+
+Under `Add data to this collection` use `Drag and drop your documents here or browse from computer` to seed the content with the json files in `data/breaches/`.
+
+![Upload data to collection](doc/source/images/upload-data.gif)
+
+### 4. Configure credentials
+
+The credentials for the IBM Cloud Discovery service can be found in the ``Services`` menu in IBM Cloud,
+by selecting the ``Service Credentials`` option for the service.
+
+The other settings for Conversation and Discovery were collected during the
+earlier setup steps (``DISCOVERY_COLLECTION_ID``, ``DISCOVERY_ENVIRONMENT_ID`` and
+``WORKSPACE_ID``).
+
+Copy the [`env.sample`](env.sample) to `.env`.
+
+```
+$ cp env.sample .env
+```
+Edit the `.env` file with the necessary settings.
+
+#### `env.sample:`
+
+```
+# Replace the credentials here with your own.
+# Rename this file to .env before starting the app.
+
+# Watson Discovery
+DISCOVERY_USERNAME=<add_discovery_username>
+DISCOVERY_PASSWORD=<add_discovery_password>
+DISCOVERY_ENVIRONMENT_ID=<add_discovery_environment>
+DISCOVERY_COLLECTION_ID=<add_discovery_collection>
+
+# Run locally on a non-default port (default is 3000)
+# PORT=3000
+```
+
+
+
+
+
+
+
+The application has the following flow:
 
 ![](doc/source/images/architecture.png)
 
