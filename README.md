@@ -7,15 +7,14 @@ In this walkthrough you will upload your own data into the Watson Discovery Serv
 ## During the walkthough you will explore and learn how to:
 1. Provision the Discovery service with storage for your data
 2. Explore the data the spreadsheet - convert to JSON (PDF, Word, HTML)
-3. Import the documents - Discovery only supports JSON, PDF, Word and HTML so a applet was built to convert the CSV to a set of JSON Documents
-4. Note the languate options - language options [English, German, Spanish, Arabic, French, Italian, Korean, or Brazilian Portuguese.]
-5. Walk through the enrichments introduced by Discovery by comparing the CSV to the enriched JSON documents. Discovery will enrich (add cognitive metadata to) the text field of your documents with semantic information collected by four Watson Enrichments — Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging (learn more about them here).
-6. Note the configuration options - understand the default configuration, the Discovery default configuration will enrich (add cognitive metadata to) the text field of your ingested documents with semantic information collected by these four Watson functions - Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging. (There are a total of nine Watson enrichments available; the others are Keyword Extraction, Relation Extraction, Emotion Analysis, Element Classification, and Semantic Role Extraction.)
-7. Querying the data set
-8. Filtering by original fields
-9. Filtering by enriched fields
-10. Show custom configuration setup - add a new enrichment to the title field
-11. Use Watson Exploreer to call the service from out side of the tooling using the supplied credentials
+3. Define a new data collection and load the data files - Discovery only supports JSON, PDF, Word and HTML so a applet was built to convert the CSV to a set of JSON Documents. Note the languate options - language options [English, German, Spanish, Arabic, French, Italian, Korean, or Brazilian Portuguese.]
+4. Explore the Schema - Walk through the enrichments introduced by Discovery by comparing the CSV to the enriched JSON documents. Discovery will enrich (add cognitive metadata to) the text field of your documents with semantic information collected by four Watson Enrichments — Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging (learn more about them here).
+5. Note the configuration options - understand the default configuration, the Discovery default configuration will enrich (add cognitive metadata to) the text field of your ingested documents with semantic information collected by these four Watson functions - Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging. (There are a total of nine Watson enrichments available; the others are Keyword Extraction, Relation Extraction, Emotion Analysis, Element Classification, and Semantic Role Extraction.)
+6. Querying the data set
+7. Filtering by original fields
+8. Filtering by enriched fields
+9. Show custom configuration setup - add a new enrichment to the title field
+10. Use Watson Exploreer to call the service from out side of the tooling using the supplied credentials
 
 Later you can configure a full web application so that it can query the data collection you created. For now we want to learn more about the service. 
 
@@ -42,6 +41,7 @@ We're going to use a public data set that lists cyber security breaches between 
 
 Watson Discovery Service can import documents in various formats, including PDFs, Word documents, HTML files, and JSON files. CSV files are not accepted by the service, so we created a script to convert the data from CSV to JSON format. The script creates one JSON file for each row in the CSV file. You can find the resulting JSON files in the data directory of the repository. Here’s an example JSON file: 
 
+
 ### 3. Load the Discovery files
 
 Launch the **Watson Discovery** tool. Create a **new data collection**
@@ -49,7 +49,7 @@ and give the data collection a unique name.
 
 
 <p align="center">
-  <img width="600" src="doc/source/images/create-collection.png">
+  <img width="600" src="doc/source/images/newcollection.png">
 </p>
 
 > Save the **environment_id** and **collection_id** for your `.env` file in the next step.
@@ -57,6 +57,24 @@ and give the data collection a unique name.
 Under `Add data to this collection` use `Drag and drop your documents here or browse from computer` to seed the content with the json files in `data/breaches/`.
 
 ![Upload data to collection](doc/source/images/upload-data.gif)
+
+### 4. Explore the schema
+
+Once the data is injested a summary panel is displayed:
+<p align="center">
+  <img width="600" src="doc/source/images/injested.png">
+</p>
+
+Click on the View Data Schema on the top right to view the Data Schema:
+<p align="center">
+  <img width="600" src="doc/source/images/dataschema.png">
+</p>
+
+### 5. Query the data set
+
+Now that you’ve got your data into a collection, you can start having fun by running queries against your data set. The tooling for the Watson Discovery Service provides some utilities to help you with building queries. Click the Query this collection button and you’ll see an overview showing some insights into your data.
+
+
 
 ### 4. Configure credentials
 
