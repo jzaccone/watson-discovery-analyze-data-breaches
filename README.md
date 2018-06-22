@@ -20,11 +20,11 @@ Later you can configure a full web application so that it can query the data col
 
 Before you start you must 
 ## Sign up for IBM Cloud
-
 If you are not already signed up for the IBM Cloud, [sign up here](https://console.bluemix.net)
 
 
-### Walkthrough Steps
+## Walkthrough Steps
+
 ### 1. Create an instance of the Watson Discovery Service 
 
 1.1 From the IBM Cloud Dashboard click on **Create resource**
@@ -58,15 +58,8 @@ Watson Discovery Service can import documents in various formats, including PDFs
 
 ### 3. Load the Discovery files
 
-Launch the **Watson Discovery** tool. Create a **new data collection**
-and give the data collection a unique name.
 
-
-<p align="center">
-  <img width="600" src="doc/source/images/newcollection.png">
-</p>
-
-3.1 Launch the tool
+3.1 Launch the **Watson Discovery** tool. 
 <p align="center">
   <img width="600" src="doc/source/images/launch1.png">
 </p>
@@ -85,31 +78,46 @@ and give the data collection a unique name.
   <img width="600" src="doc/source/images/launch3.png">
 </p>
 
+3.3 Give the  **new data collection** a unique name.
+<p align="center">
+  <img width="600" src="doc/source/images/newcollection.png">
+</p>
 
-
-> Save the **environment_id** and **collection_id** for your `.env` file in the next step.
-
-Under `Add data to this collection` use `Drag and drop your documents here or browse from computer` to seed the content with the json files in `data/breaches/`.
+3.4 Under `Add data to this collection` use `Drag and drop your documents here or browse from computer` to seed the content with the json files in `data/breaches/`.
 
 ![Upload data to collection](doc/source/images/upload-data.gif)
 
 ### 4. Explore the schema
 
-Once the data is injested a summary panel is displayed:
+4.1 Once the data is injested a summary panel is displayed:
 <p align="center">
   <img width="600" src="doc/source/images/injested.png">
 </p>
 
-Click on the View Data Schema on the top right to view the Data Schema:
+4.2 Click on the View Data Schema on the top right to view the Data Schema:
 <p align="center">
   <img width="600" src="doc/source/images/dataschema.png">
 </p>
 
 ### 5. Query the data set
 
-Now that you’ve got your data into a collection, you can start having fun by running queries against your data set. The tooling for the Watson Discovery Service provides some utilities to help you with building queries. Click the Query this collection button and you’ll see an overview showing some insights into your data.
+Now that you’ve got your data into a collection, you can start having fun by running queries against your data set. The tooling for the Watson Discovery Service provides some utilities to help you with building queries. Click the **Build Queries Icon** to build your own queries 
 
- Now click the Build your own query button to bring up a query building form. This interface enables you to compose a query by specifying keywords, filters, and aggregations. To begin with, just leave all fields blank and click the Run Query button. In the panel on the right, you should now see the results from running this query.
+<p align="center">
+  <img width="600" src="doc/source/images/query1.png">
+</p> 
+
+ This brings up the query building form. This interface enables you to compose a query by specifying keywords, aggregations and filters. To begin with, just leave all fields blank and click the Run Query button. Alternatively you can run any of the sample queries generated on the top right of the panel. 
+ 
+ <p align="center">
+  <img width="600" src="doc/source/images/query2.png">
+</p> 
+ 
+ In the panel on the right, you should now see the results from running this query.
+ 
+<p align="center">
+  <img width="600" src="doc/source/images/query3.png">
+</p> 
  
   You can use this interface to explore the data in the collection. Click the disclosure icons to expand and contract fields. You should find that each result corresponds to one of the JSON files that you uploaded earlier. All of the original fields from the JSON file are there, and you’ll find some additional fields too: id, score, extracted_metadata, and enriched_text. If you drill down into the enriched_text field, you’ll find fields such as entities, docSentiment, taxonomy, and so on. When your data was imported to the Watson Discovery Service, enrichments were applied to the text field, and these fields are the result of that process. 
 
@@ -119,11 +127,19 @@ Take another look at the fields in the original JSON files that you uploaded to 
     method_of_leak:hacked
 Then click the Run query button. In the right column, you should now see the result list filtered: 
 
+<p align="center">
+  <img width="600" src="doc/source/images/query4.png">
+</p> 
+
 
 Try modifying that query to show all the records where the method_of_leak is 'accidentally published'. Now try modifying it to show results where year is 2017, or where organisation is 'healthcare'. You can apply more than one filter at a time by separating your terms with a comma. For example, to show all hacks that affected healthcare organisations, use this:
 
 
     organisation:'healthcare',method_of_leak:'hacked'
+    
+<p align="center">
+  <img width="600" src="doc/source/images/query5.png">
+</p> 
 
 
 The Watson Discovery Service makes it easy to query your data set by these original fields that were included in the original documents. 
@@ -131,15 +147,34 @@ The Watson Discovery Service makes it easy to query your data set by these origi
 ## 7. Filtering by generated fields
 Take another look at the fields that come under enriched_text. These fields weren’t there in the original data set. They were generated by the enrichment process. You can just as easily run queries against these generated fields. For example, let’s filter the collection to show all of the records where 'bank account' is mentioned in the text field. In the query builder, enter the following in the Narrow your results (filter) field:
 
-    enriched_text.entities.text:"bank account"
+    enriched_text.categories.label:"/health and fitness"
 
 Click the Run query button. In the right column, you should now see the result list filtered: In the same way, you could adapt this query to filter on other fields within the enriched_text field. Try modifying that filter to only show results where the docSentiment has type:'positive'. As you can see, applying filters on generated fields is just as easy as filtering on fields from the original dataset.
 
 ## 8. Applying enrichments to your own data
-When you upload a JSON file to your Watson Discovery collection using the default configuration, it applies enrichments to the text field. In the resulting data set, you can find those enrichments under the enriched_text key. If your data has other fields that you’d like to apply enrichments to, you can create a custom configuration. On the Your data page that summarizes the status and API information for your collection, you should see a Configuration section. Click the Switch link, and then Create a new configuration. Give your custom configuration a name and then click Create. You can upload sample documents and use them to test your configuration. For example, if you upload the 001.json file and apply the default configuration to it you should see something like this: 
+When you upload a JSON file to your Watson Discovery collection using the default configuration, it applies enrichments to the text field. In the resulting data set, you can find those enrichments under the enriched_text key. If your data has other fields that you’d like to apply enrichments to, you can create a custom configuration. On the Your data page that summarizes the status and API information for your collection, you should see a Configuration section. 
+
+<p align="center">
+  <img width="600" src="doc/source/images/enrich1.png">
+</p> 
 
 
-Notice how the preview in the right panel contains an enriched_text field with all of the specified enrichments. If you wanted to extract entities from the title field, you could set up your configuration like this: This time in the preview panel there’s an additional enriched_title field. With the title of “Netflix Twitter account” in the sample document, the Netflix and Twitter entities have been extracted and labelled with type:'company'. You can tweak your configuration to apply whichever enrichments you need to each of the appropriate fields from your data. I hope these steps will help you get started with your own data sets and the Watson Discovery Service. Leave a comment below and let me know how it goes! 
+Click the Switch link, and then Create a new configuration. Give your custom configuration a name and then click Create. 
+<p align="center">
+  <img width="600" src="doc/source/images/enrich2.png">
+</p> 
+You can upload sample documents and use them to test your configuration. For example, if you upload the 001.json file and apply the default configuration to it you should see something like this: 
+<p align="center">
+  <img width="600" src="doc/source/images/enrich3.png">
+</p> 
+
+Notice how the preview in the right panel contains an enriched_text field with all of the specified enrichments. If you wanted to extract entities from the title field, you could set up your configuration like this: This time in the preview panel there’s an additional enriched_title field. With the title of “Netflix Twitter account” in the sample document, the Netflix and Twitter entities have been extracted and labelled with type:'company'. 
+
+<p align="center">
+  <img width="600" src="doc/source/images/enrich4.png">
+</p> 
+
+You can tweak your configuration to apply whichever enrichments you need to each of the appropriate fields from your data. I hope these steps will help you get started with your own data sets and the Watson Discovery Service. Leave a comment below and let me know how it goes! 
 
 ## 9. Using queries in your own application
 The API documentation describes how to run a query against your own collection programatically. For example, to show results where method_of_leak:hacked using curl, you could run:
@@ -262,6 +297,9 @@ and give the data collection a unique name.
 <p align="center">
   <img width="600" src="doc/source/images/create-collection.png">
 </p>
+
+
+
 
 > Save the **environment_id** and **collection_id** for your `.env` file in the next step.
 
