@@ -42,10 +42,6 @@ If you are not already signed up for the IBM Cloud, [sign up here](https://conso
 1.5 Click on the icon to copy the credentials to the clipboard and then save them in a text file on your Desktop (or some other convenient location). You'll need the **username** and **password** values later in the lab.
 ![api_key](doc/source/images/resource5.png)
 
-Create the following services:
-
-* [**Watson Discovery**](https://console.ng.bluemix.net/catalog/services/discovery)
-
 ### 2. Explore the data
 We're going to use a public data set that lists cyber security breaches between 2004 and 2017. The data is available as a spreadsheet on [Google Docs](https://docs.google.com/spreadsheets/d/1Je-YUdnhjQJO_13r8iTeRxpU2pBKuV6RVRHoYCgiMfg/edit#gid=322165570). You can download the data set as comma-separated values (CSV) by clicking File > Download as and then selecting the .csv file format. 
 
@@ -55,6 +51,9 @@ We're going to use a public data set that lists cyber security breaches between 
 </p>
 
 Watson Discovery Service can import documents in various formats, including PDFs, Word documents, HTML files, and JSON files. CSV files are not accepted by the service, so we created a script to convert the data from CSV to JSON format. The script creates one JSON file for each row in the CSV file. You can find the resulting JSON files in the data directory of the repository. Here’s an example JSON file: 
+<p align="center">
+  <img width="600" src="doc/source/images/sample1.png">
+</p>
 
 
 ### 3. Load the Discovery files
@@ -66,6 +65,27 @@ and give the data collection a unique name.
 <p align="center">
   <img width="600" src="doc/source/images/newcollection.png">
 </p>
+
+3.1 Launch the tool
+<p align="center">
+  <img width="600" src="doc/source/images/launch1.png">
+</p>
+
+
+
+3.2 Create a data collection
+<p align="center">
+  <img width="600" src="doc/source/images/launch2.png">
+</p>
+
+3.2 Setting up your storage
+
+ You may get this message if storage has not already been setup
+<p align="center">
+  <img width="600" src="doc/source/images/launch3.png">
+</p>
+
+
 
 > Save the **environment_id** and **collection_id** for your `.env` file in the next step.
 
