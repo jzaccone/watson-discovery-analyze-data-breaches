@@ -185,6 +185,20 @@ curl -u "{username}":"{password}"
 
 If you replace the {username}, {password}, {environment_id}, and {collection_id} placeholders with the appropriate keys for your Watson Discovery Service, you should see the same results as when you ran that query through the tooling. This developer journey app uses the Node client to connect to the Watson Discovery Service and run queries against it. You can use it as a reference to help you build an application that queries your own data set. 
 
+An easy way to test your queries outside of an application is to use the [Watson API Explorer](https://ibm.biz/BdYBfb)
+
+<p align="center">
+  <img width="600" src="doc/source/images/explore1.png">
+</p> 
+
+For many of the API's you will need additional environment and configuration identifiers.  You can get them from the summary panel as shown below:
+
+<p align="center">
+  <img width="600" src="doc/source/images/explore2.png">
+</p> 
+
+
+
 ### 4. Configure credentials
 
 The credentials for the IBM Cloud Discovery service can be found in the ``Services`` menu in IBM Cloud,
