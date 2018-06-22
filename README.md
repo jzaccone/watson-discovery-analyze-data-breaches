@@ -197,47 +197,16 @@ For many of the API's you will need additional environment and configuration ide
   <img width="600" src="doc/source/images/explore2.png">
 </p> 
 
+# If you want to see a full application 
 
 
-### 4. Configure credentials
+This example is part of a code pattern so it has an associated application that you can run so that it can query the data collection you created. The web app allows you to explore that data.
 
-The credentials for the IBM Cloud Discovery service can be found in the ``Services`` menu in IBM Cloud,
-by selecting the ``Service Credentials`` option for the service.
+Once you have completed this Code Pattern, you will know how to:
 
-The other settings for Conversation and Discovery were collected during the
-earlier setup steps (``DISCOVERY_COLLECTION_ID``, ``DISCOVERY_ENVIRONMENT_ID`` and
-``WORKSPACE_ID``).
-
-Copy the [`env.sample`](env.sample) to `.env`.
-
-```
-$ cp env.sample .env
-```
-Edit the `.env` file with the necessary settings.
-
-#### `env.sample:`
-
-```
-# Replace the credentials here with your own.
-# Rename this file to .env before starting the app.
-
-# Watson Discovery
-DISCOVERY_USERNAME=<add_discovery_username>
-DISCOVERY_PASSWORD=<add_discovery_password>
-DISCOVERY_ENVIRONMENT_ID=<add_discovery_environment>
-DISCOVERY_COLLECTION_ID=<add_discovery_collection>
-
-# Run locally on a non-default port (default is 3000)
-# PORT=3000
-```
-
-
-
-
-
-
-
-The application has the following flow:
+* Build and run a Node.js API server with a HTML frontend written in React
+* Configure Watson Discovery to build and enrich private data collections
+* Use Watson Discovery to query and analyze data
 
 ![](doc/source/images/architecture.png)
 
@@ -312,9 +281,6 @@ and give the data collection a unique name.
   <img width="600" src="doc/source/images/create-collection.png">
 </p>
 
-
-
-
 > Save the **environment_id** and **collection_id** for your `.env` file in the next step.
 
 Under `Add data to this collection` use `Drag and drop your documents here or browse from computer` to seed the content with the json files in `data/breaches/`.
@@ -382,7 +348,6 @@ DISCOVERY_COLLECTION_ID=<add_discovery_collection>
 * [Watson Discovery, an IBM API adding value to corporate data](https://bbvaopen4u.com/en/actualidad/watson-discovery-ibm-api-adding-value-corporate-data): Dive into IBM Watson Discovery Service, enabling companies to structure and understand large masses of data.
 * [Blog: Watson Discovery Service – Understand your data at scale with less effort](https://www.ibm.com/blogs/watson/2016/12/watson-discovery-service-understand-data-scale-less-effort/): Align and connect different data sets to expose critical correlations and causal factors.
 * [Blog: Using IBM Watson Discovery to query unstructured data](https://dzone.com/articles/using-ibm-watson-discovery-to-query-unstructured-d): Make sense of and identify patterns in large amounts of unstructured data.
-
 # Learn more
 
 * **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/code/technologies/artificial-intelligence/).
