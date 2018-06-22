@@ -8,13 +8,12 @@ In this walkthrough you will upload your own data into the Watson Discovery Serv
 1. Provision the Discovery service with storage for your data
 2. Explore the data the spreadsheet - convert to JSON (PDF, Word, HTML)
 3. Define a new data collection and load the data files - Discovery only supports JSON, PDF, Word and HTML so a applet was built to convert the CSV to a set of JSON Documents. Note the languate options - language options [English, German, Spanish, Arabic, French, Italian, Korean, or Brazilian Portuguese.]
-4. Explore the Schema - Walk through the enrichments introduced by Discovery by comparing the CSV to the enriched JSON documents. Discovery will enrich (add cognitive metadata to) the text field of your documents with semantic information collected by four Watson Enrichments — Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging (learn more about them here).
-5. Note the configuration options - understand the default configuration, the Discovery default configuration will enrich (add cognitive metadata to) the text field of your ingested documents with semantic information collected by these four Watson functions - Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging. (There are a total of nine Watson enrichments available; the others are Keyword Extraction, Relation Extraction, Emotion Analysis, Element Classification, and Semantic Role Extraction.)
-6. Querying the data set
-7. Filtering by original fields
-8. Filtering by enriched fields
-9. Show custom configuration setup - add a new enrichment to the title field
-10. Use Watson Exploreer to call the service from out side of the tooling using the supplied credentials
+4. Explore the Schema - Walk through the enrichments introduced by Discovery by comparing the CSV to the enriched JSON documents. Discovery will enrich (add cognitive metadata to) the text field of your documents with semantic information collected by four Watson Enrichments — Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging (learn more about them here). Note the configuration options - understand the default configuration, the Discovery default configuration will enrich (add cognitive metadata to) the text field of your ingested documents with semantic information collected by these four Watson functions - Entity Extraction, Sentiment Analysis, Category Classification, and Concept Tagging. (There are a total of nine Watson enrichments available; the others are Keyword Extraction, Relation Extraction, Emotion Analysis, Element Classification, and Semantic Role Extraction.)
+5. Querying the data set
+6. Filtering by original fields
+7. Filtering by enriched fields
+8. Adding custom enrichments
+9. Calling the API from your application: Using Watson API Exploreer 
 
 Later you can configure a full web application so that it can query the data collection you created. For now we want to learn more about the service. 
 
@@ -176,7 +175,7 @@ Notice how the preview in the right panel contains an enriched_text field with a
 
 You can tweak your configuration to apply whichever enrichments you need to each of the appropriate fields from your data. I hope these steps will help you get started with your own data sets and the Watson Discovery Service. Leave a comment below and let me know how it goes! 
 
-## 9. Using queries in your own application
+## 8. Calling the API's in your own application
 The API documentation describes how to run a query against your own collection programatically. For example, to show results where method_of_leak:hacked using curl, you could run:
 
 curl -u "{username}":"{password}"
@@ -196,6 +195,8 @@ For many of the API's you will need additional environment and configuration ide
 <p align="center">
   <img width="600" src="doc/source/images/explore2.png">
 </p> 
+
+
 
 # If you want to see a full application 
 
