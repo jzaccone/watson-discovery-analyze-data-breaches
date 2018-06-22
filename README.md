@@ -35,6 +35,10 @@ Create the following services:
 ### 2. Explore the data
 We're going to use a public data set that lists cyber security breaches between 2004 and 2017. The data is available as a spreadsheet on [Google Docs](https://docs.google.com/spreadsheets/d/1Je-YUdnhjQJO_13r8iTeRxpU2pBKuV6RVRHoYCgiMfg/edit#gid=322165570). You can download the data set as comma-separated values (CSV) by clicking File > Download as and then selecting the .csv file format. 
 
+<p align="center">
+  <img width="600" src="doc/source/images/create-collection.png">
+</p>
+
 Watson Discovery Service can import documents in various formats, including PDFs, Word documents, HTML files, and JSON files. CSV files are not accepted by the service, so we created a script to convert the data from CSV to JSON format. The script creates one JSON file for each row in the CSV file. You can find the resulting JSON files in the data directory of the repository. Here’s an example JSON file: 
 
 ### 3. Load the Discovery files
@@ -43,7 +47,7 @@ Launch the **Watson Discovery** tool. Create a **new data collection**
 and give the data collection a unique name.
 
 <p align="center">
-  <img width="600" src="doc/source/images/create-collection.png">
+  <img width="600" src="doc/source/images/export-csv.png">
 </p>
 
 > Save the **environment_id** and **collection_id** for your `.env` file in the next step.
