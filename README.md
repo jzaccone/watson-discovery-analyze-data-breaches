@@ -4,7 +4,7 @@
 
 In this walkthrough you will upload your own data into the Watson Discovery Service. To do this you will provision the Discovery service, load the data and query the data.
 
-## During the walkthough you will explore:
+## During the walkthough you will explore and learn how to:
 1. Provision the Discovery service with storage for your data
 2. Explore the data the spreadsheet - convert to JSON (PDF, Word, HTML)
 3. Import the documents - Discovery only supports JSON, PDF, Word and HTML so a applet was built to convert the CSV to a set of JSON Documents
@@ -17,22 +17,23 @@ In this walkthrough you will upload your own data into the Watson Discovery Serv
 10. Show custom configuration setup - add a new enrichment to the title field
 11. Use Watson Exploreer to call the service from out side of the tooling using the supplied credentials
 
-Once you've completed the walkthrough you will know how to :
+Later you can configure a full web application so that it can query the data collection you created. For now we want to learn more about the service. 
 
-* Provision the Discovery service
-* Import data into the service
-* Run simple and advanced queries
-* Add enrichments
+Before you start you must 
+## Sign up for IBM Cloud
 
-If you like you can configure a web application so that it can query the data collection you created. The web app allows you to explore that data. 
+If you are not already signed up for the IBM Cloud, [sign up here](https://console.bluemix.net)
+
 
 ### Walkthrough Steps
-
-### 2. Create IBM Cloud services
+### 1. Provision the Watson Discovery Service 
 
 Create the following services:
 
 * [**Watson Discovery**](https://console.ng.bluemix.net/catalog/services/discovery)
+
+### 2. Explore the data
+We're going to use a public data set that lists cyber security breaches between 2004 and 2017. The data is available as a spreadsheet on [Google Docs](https://docs.google.com/spreadsheets/d/1Je-YUdnhjQJO_13r8iTeRxpU2pBKuV6RVRHoYCgiMfg/edit#gid=322165570). You can download the data set as comma-separated values (CSV) by clicking File > Download as and then selecting the .csv file format. 
 
 ### 3. Load the Discovery files
 
