@@ -25,7 +25,22 @@ If you are not already signed up for the IBM Cloud, [sign up here](https://conso
 
 
 ### Walkthrough Steps
-### 1. Provision the Watson Discovery Service 
+### 1. Create an instance of the Watson Discovery Service 
+
+1.1 From the IBM Cloud Dashboard click on **Create resource**
+![Create resource](doc/source/images/resource1.png)
+
+1.2 Select the **Watson** category project type and then click on **Discovery**
+![Discovery Service](doc/source/images/resource2.png)
+
+1.3 Make sure the **Lite plan** is selected and then click **Create**
+![Lite Plan](doc/source/images/resource3.png)
+
+1.4 Select **Service credentials** at the left and then click on **View credentials** next to the credentials generated for your service instance
+![Credentials](doc/source/images/resource4.png)
+
+1.5 Click on the icon to copy the credentials to the clipboard and then save them in a text file on your Desktop (or some other convenient location). You'll need the **username** and **password** values later in the lab.
+![api_key](doc/source/images/resource5.png)
 
 Create the following services:
 
