@@ -24,12 +24,21 @@ If you are not already signed up for the IBM Cloud, [sign up here](https://conso
 
 ## Walkthrough Steps
 
+### Before you start
+
+Clone the `watson-discovery-analyze-data-breaches` repo locally. In a terminal, run:
+```
+$ git clone https://github.com/jzaccone/watson-discovery-analyze-data-breaches
+```
+We'll be using the folder [`data/breaches/`](data/breaches/)
+
 ### 1. Create an instance of the Watson Discovery Service 
+
 
 1.1 From the IBM Cloud Dashboard click on **Create resource**
 ![Create resource](doc/source/images/resource1.png)
 
-1.2 Select the **Watson** category project type and then click on **Discovery**
+1.2 Select the **AI** category project type and then click on **Discovery**
 ![Discovery Service](doc/source/images/resource2.png)
 
 1.3 Make sure the **Lite plan** is selected and then click **Create**
@@ -38,18 +47,22 @@ If you are not already signed up for the IBM Cloud, [sign up here](https://conso
 1.4 Select **Service credentials** at the left and then click on **View credentials** next to the credentials generated for your service instance
 ![Credentials](doc/source/images/resource4.png)
 
-1.5 Click on the icon to copy the credentials to the clipboard and then save them in a text file on your Desktop (or some other convenient location). You'll need the **username** and **password** values later in the lab.
+1.5 Click on the icon to copy the credentials to the clipboard and then save them in a text file on your Desktop (or some other convenient location). You'll need the **apikey** and **url** values later in the lab.
 ![api_key](doc/source/images/resource5.png)
 
 ### 2. Explore the data
-We're going to use a public data set that lists cyber security breaches between 2004 and 2017. The data is available as a spreadsheet on [Google Docs](https://docs.google.com/spreadsheets/d/1Je-YUdnhjQJO_13r8iTeRxpU2pBKuV6RVRHoYCgiMfg/edit#gid=322165570). You can download the data set as comma-separated values (CSV) by clicking File > Download as and then selecting the .csv file format. 
+We're going to use a public data set that lists cyber security breaches between 2004 and 2017. 
+
+Optional: The data is available as a spreadsheet on [Google Docs](https://docs.google.com/spreadsheets/d/1Je-YUdnhjQJO_13r8iTeRxpU2pBKuV6RVRHoYCgiMfg/edit#gid=322165570). You can download the data set as comma-separated values (CSV) by clicking File > Download as and then selecting the .csv file format. 
 
 
 <p align="center">
   <img width="600" src="doc/source/images/export-csv.png">
 </p>
 
-Watson Discovery Service can import documents in various formats, including PDFs, Word documents, HTML files, and JSON files. CSV files are not accepted by the service, so we created a script to convert the data from CSV to JSON format. The script creates one JSON file for each row in the CSV file. You can find the resulting JSON files in the data directory of the repository. Here’s an example JSON file: 
+Watson Discovery Service can import documents in various formats, including PDFs, Word documents, HTML files, and JSON files. CSV files are not accepted by the service, so we created a script to convert the data from CSV to JSON format. The script creates one JSON file for each row in the CSV file. You can find the resulting JSON files in the data directory of the repository.
+
+Here’s an example JSON file: 
 <p align="center">
   <img width="600" src="doc/source/images/sample1.png">
 </p>
@@ -65,7 +78,8 @@ Watson Discovery Service can import documents in various formats, including PDFs
 
 
 
-3.2 Create a data collection
+3.2 Create a data collection by selecting the "Upload your own data" option next to "Create a new data collection"
+
 <p align="center">
   <img width="600" src="doc/source/images/launch2.png">
 </p>
@@ -178,11 +192,20 @@ You can tweak your configuration to apply whichever enrichments you need to each
 ## 8. Calling the API's in your own application
 The API documentation describes how to run a query against your own collection programatically. For example, to show results where method_of_leak:hacked using curl, you could run:
 
-curl -u "{username}":"{password}"
-\ "https://gateway.watsonplatform.net/discovery/api/v1/environments/{environment_id}/collections/{collection_id}/query?version=2016-12-01&filter=method_of_leak:hacked&return=text"
+```
+curl -u "apikey":"{api_key}"
+"https://gateway.watsonplatform.net/discovery/api/v1/environments/{environment_id}/collections/{collection_id}/query?version=2016-12-01&filter=method_of_leak:hacked&return=text"
+```
 
 
-If you replace the {username}, {password}, {environment_id}, and {collection_id} placeholders with the appropriate keys for your Watson Discovery Service, you should see the same results as when you ran that query through the tooling. This developer journey app uses the Node client to connect to the Watson Discovery Service and run queries against it. You can use it as a reference to help you build an application that queries your own data set. 
+Replace the {api_key}, {environment_id}, and {collection_id} placeholders with the appropriate keys for your Watson Discovery Service. You can get additional information about your environment and collection from the summary panel as shown below:
+
+<p align="center">
+  <img width="600" src="doc/source/images/explore2.png">
+</p> 
+
+ You should see the same results as when you ran that query through the tooling. This developer journey app uses the Node client to connect to the Watson Discovery Service and run queries against it. You can use it as a reference to help you build an application that queries your own data set.
+ 
 
 An easy way to test your queries outside of an application is to use the [Watson API Explorer](https://ibm.biz/BdYBfb)
 
@@ -190,18 +213,12 @@ An easy way to test your queries outside of an application is to use the [Watson
   <img width="600" src="doc/source/images/explore1.png">
 </p> 
 
-For many of the API's you will need additional environment and configuration identifiers.  You can get them from the summary panel as shown below:
-
-<p align="center">
-  <img width="600" src="doc/source/images/explore2.png">
-</p> 
-
 
 
 # If you want to see a full application 
 
 
-This example is part of a code pattern so it has an associated application that you can run so that it can query the data collection you created. The web app allows you to explore that data.
+To complete this lab, we will walk through a code pattern which has an associated application that you can run so that it can query the data collection you created. The web app allows you to explore that data.
 
 Once you have completed this Code Pattern, you will know how to:
 
@@ -253,42 +270,11 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locall
 ## Run locally
 > NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button.
 
-1. [Clone the repo](#1-clone-the-repo)
-2. [Create IBM Cloud services](#2-create-ibm-cloud-services)
-3. [Load the Discovery files](#3-load-the-discovery-files)
-4. [Configure credentials](#4-configure-credentials)
-5. [Run the application](#5-run-the-application)
+1. [Configure credentials](#1-configure-credentials)
+2. [Run the application](#2-run-the-application)
 
-## 1. Clone the repo
 
-Clone the `watson-discovery-analyze-data-breaches` repo locally. In a terminal, run:
-```
-$ git clone https://github.com/ibm/watson-discovery-analyze-data-breaches
-```
-We'll be using the folder [`data/breaches/`](data/breaches/)
-
-### 2. Create IBM Cloud services
-
-Create the following services:
-
-* [**Watson Discovery**](https://console.ng.bluemix.net/catalog/services/discovery)
-
-### 3. Load the Discovery files
-
-Launch the **Watson Discovery** tool. Create a **new data collection**
-and give the data collection a unique name.
-
-<p align="center">
-  <img width="600" src="doc/source/images/create-collection.png">
-</p>
-
-> Save the **environment_id** and **collection_id** for your `.env` file in the next step.
-
-Under `Add data to this collection` use `Drag and drop your documents here or browse from computer` to seed the content with the json files in `data/breaches/`.
-
-![Upload data to collection](doc/source/images/upload-data.gif)
-
-### 4. Configure credentials
+### 1. Configure credentials
 
 The credentials for the IBM Cloud Discovery service can be found in the ``Services`` menu in IBM Cloud,
 by selecting the `Service Credentials` option for the service.
@@ -321,7 +307,7 @@ DISCOVERY_COLLECTION_ID=<add_discovery_collection_id>
 # PORT=3000
 ```
 
-### 5. Run the application
+### 2. Run the application
 1. Install [Node.js](https://nodejs.org/en/) runtime or NPM.
 1. Start the app by running `npm install`, followed by `npm start`.
 1. Use the chatbot at `localhost:3000`.
