@@ -215,7 +215,7 @@ An easy way to test your queries outside of an application is to use the [Watson
 
 
 
-# If you want to see a full application 
+# Completing the Picture: Full Application Example 
 
 
 To complete this lab, we will walk through a code pattern which has an associated application that you can run so that it can query the data collection you created. The web app allows you to explore that data.
